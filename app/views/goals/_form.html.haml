@@ -1,0 +1,18 @@
+- form_for(@goal) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :description
+    %br
+    = f.text_field :description
+  .field
+    = f.label :completed_at
+    %br
+    = f.datetime_select :completed_at
+  .field
+    = f.label :parent_goal
+    %br
+    = f.text_field :parent_goal
+
+  .actions
+    = f.submit

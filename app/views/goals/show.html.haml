@@ -1,0 +1,11 @@
+%p
+  %strong Description:
+  = @goal.description
+%p
+  %strong Completed at:
+  = @goal.completed_at
+%p
+  %strong Parent goal:
+  = @goal.parent_goal
+
+== #{ link_to 'Edit', edit_goal_path(@goal) } | #{ link_to 'Back', goals_path }

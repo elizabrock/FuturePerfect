@@ -1,4 +1,8 @@
 FuturePerfect::Application.routes.draw do |map|
+  resources :goals
+  
+  root :to => "goals#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

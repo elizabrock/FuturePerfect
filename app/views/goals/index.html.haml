@@ -1,0 +1,22 @@
+%h1 Listing goals
+
+%table
+  %thead
+    %tr
+      %th Description
+      %th Completed at
+      %th Parent goal
+      %th{ :colspan => 3 }
+  
+  %tbody
+    - for goal in @goals
+      %tr{ :class => cycle(:odd, :even) }
+        %td= goal.description
+        %td= goal.completed_at
+        %td= goal.parent_goal
+        %td= link_to 'Show', goal
+        %td= link_to 'Edit', edit_goal_path(goal)
+        %td= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete
+
+%br
+= link_to 'New goal', new_goal_path
