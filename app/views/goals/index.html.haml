@@ -1,22 +1,34 @@
-%h1 Listing goals
+- content_for :body_class, ''
 
-%table
-  %thead
-    %tr
-      %th Description
-      %th Completed at
-      %th Parent goal
-      %th{ :colspan => 3 }
-  
-  %tbody
-    - for goal in @goals
-      %tr{ :class => cycle(:odd, :even) }
-        %td= goal.description
-        %td= goal.completed_at
-        %td= goal.parent_goal
-        %td= link_to 'Show', goal
-        %td= link_to 'Edit', edit_goal_path(goal)
-        %td= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete
+%span.graytitle
+  Goals
+%ul.pageitem
+  - for goal in @goals
+    %li.store
+      -link_to goal do
+        %span.image
+        %span.comment
+          comment
+        %span.name
+          = goal.description
+        %span.stars4
+        %span.starcomment
+          98% done
+        %span.arrow
+%span.graytitle
+  You can finish these right now!
+%ul.pageitem
+  - for goal in @goals
+    %li.menu
+      -link_to goal do
+        %span.name
+          = goal.description
+        %span.arrow
+  / %tr{ :class => cycle(:odd, :even) }
+  /   %td= goal.description
+  /   %td= goal.completed_at
+  /   %td= goal.parent_goal
+  /   %td= link_to 'Show', goal
+  /   %td= link_to 'Edit', edit_goal_path(goal)
+  /   %td= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete
 
-%br
-= link_to 'New goal', new_goal_path

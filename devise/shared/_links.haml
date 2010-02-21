@@ -1,0 +1,35 @@
+%ul.pageitem
+  - if controller_name != 'sessions'
+    %li.menu
+      = link_to new_user_session_path do
+        %span.name
+          = t('devise.sessions.link')
+        %span.arrow
+
+  - if controller_name != 'registrations'
+    %li.menu
+      = link_to new_user_registration_path do
+        %span.name
+          = t('devise.registrations.link')
+        %span.arrow
+  
+  - if controller_name != 'passwords'
+    %li.menu
+      = link_to new_user_password_path do
+        %span.name
+          = t('devise.passwords.link')
+        %span.arrow
+  
+  - if controller_name != 'confirmations'
+    %li.menu
+      = link_to new_user_confirmation_path do
+        %span.name
+          = t('devise.confirmations.link')
+        %span.arrow
+
+  / - if controller_name != 'unlocks'
+  /   %li.menu
+  /     = link_to new_user_unlock_path do
+  /       %span.name
+  /         = t('devise.unlocks.link')
+  /       %span.arrow

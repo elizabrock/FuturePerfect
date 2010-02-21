@@ -1,0 +1,15 @@
+-content_for :header, "Change my password"
+
+- form_for resource_name, resource, :url => password_path(resource_name), :html => { :method => :put } do |f|
+  = iphone_error_messages_for f
+  = f.hidden_field :reset_password_token
+  %fieldset
+    %ul.pageitem
+      %li.bigfield
+        = f.text_field :password, :placeholder=>"Password"
+      %li.bigfield
+        = f.text_field :password_confirmation, :placeholder=>"Password Confirmation"
+      %li.button
+        = f.submit "Change my password"
+      
+= render :partial => "devise/shared/links"

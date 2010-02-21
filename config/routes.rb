@@ -1,4 +1,6 @@
 FuturePerfect::Application.routes.draw do |map|
+  devise_for :users
+  
   resources :goals
   
   root :to => "goals#index"

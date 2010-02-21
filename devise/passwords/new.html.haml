@@ -1,0 +1,13 @@
+-content_for :header, "Forgot your password?"
+
+- form_for resource_name, resource, :url => password_path(resource_name) do |f|
+  = iphone_error_messages_for f
+  %fieldset
+    %ul.pageitem
+      %li.bigfield
+        = f.text_field :email, :placeholder=>"Email"
+      %li.button
+        = f.submit "Send me reset instructions"
+      
+= render :partial => "devise/shared/links"
+

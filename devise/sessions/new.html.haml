@@ -1,0 +1,20 @@
+-content_for :header, "Sign In"
+
+- form_for resource_name, resource, :url => session_path(resource_name) do |f|
+  = iphone_error_messages_for f
+  %fieldset
+    %ul.pageitem
+      %li.bigfield
+        = f.text_field :email, :placeholder=>"Email"
+      %li.bigfield
+        = f.password_field :password, :placeholder=>"Password"
+    
+      - if devise_mapping.rememberable?
+        %li.checkbox
+          %span.name
+            = f.label :remember_me
+          = f.check_box :remember_me
+      %li.button
+        = f.submit "Sign in"
+      
+= render :partial => "devise/shared/links"

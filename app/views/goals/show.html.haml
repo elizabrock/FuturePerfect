@@ -1,11 +1,27 @@
-%p
-  %strong Description:
-  = @goal.description
-%p
-  %strong Completed at:
-  = @goal.completed_at
-%p
-  %strong Parent goal:
-  = @goal.parent_goal
+-content_for :header, @goal.description
 
-== #{ link_to 'Edit', edit_goal_path(@goal) } | #{ link_to 'Back', goals_path }
+-content_for :breadcrumb, link_to(@goal.parent_goal, :show => @goal.parent_goal)
+
+%ul.pageitem
+  %li.store
+    %span.image
+    %span.comment
+      comment
+    %span.name
+      = @goal.description
+    %span.stars4
+    %span.starcomment
+      98% done
+  
+=@goal.completed_at
+
+%br
+%span.graytitle
+  Progress
+  
+%br
+
+Child goals here...
+
+%br
+== #{ link_to 'Edit', edit_goal_path(@goal) }
