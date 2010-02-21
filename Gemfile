@@ -16,4 +16,6 @@ gem "bcrypt-ruby"
 group :test do
   git "git://github.com/thoughtbot/shoulda.git", :branch =>"rails3"
   gem "shoulda"
+  git "git://github.com/thoughtbot/factory_girl.git", :branch =>"rails3"
+  gem "factory_girl"
 end

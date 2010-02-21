@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+
+  #We don't yet have any functionality on user that isn't specified by Devise.
 end
