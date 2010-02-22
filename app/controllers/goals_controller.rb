@@ -18,8 +18,13 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @goal }
+      if @goal.user == current_user then
+        format.html # show.html.erb
+        format.xml  { render :xml => @goal }
+      else
+        format.html { redirect_to goals_path }
+        format.xml { redirect_to goals_path }
+      end
     end
   end
 
@@ -37,13 +42,18 @@ class GoalsController < ApplicationController
   # GET /goals/1/edit
   def edit
     @goal = Goal.find(params[:id])
+    
+    if @goal.user != current_user
+      redirect_to goals_path
+    end
   end
 
   # POST /goals
   # POST /goals.xml
   def create
     @goal = Goal.new(params[:goal])
-
+    @goal.user = current_user
+    
     respond_to do |format|
       if @goal.save
         format.html { redirect_to(@goal, :notice => 'Goal was successfully created.') }
@@ -61,7 +71,10 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
 
     respond_to do |format|
-      if @goal.update_attributes(params[:goal])
+      if @goal.user != current_user 
+        format.html { redirect_to goals_path }
+        format.xml  { head :status => :unprocessable_entity }
+      elsif @goal.update_attributes(params[:goal])
         format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -75,7 +88,8 @@ class GoalsController < ApplicationController
   # DELETE /goals/1.xml
   def destroy
     @goal = Goal.find(params[:id])
-    @goal.destroy
+    @goal.destroy if(@goal.user == current_user)
+    
 
     respond_to do |format|
       format.html { redirect_to(goals_url) }

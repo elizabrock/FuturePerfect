@@ -7,7 +7,7 @@ Factory.sequence :description do |n|
 end
 
 Factory.define :user do |u|
-  u.email Factory.next :email
+  u.email { Factory.next :email }
   u.password "test_password"
   u.password_confirmation {|a| a.password}
   u.confirmed_at 2.days.ago
@@ -15,7 +15,8 @@ end
 
 
 Factory.define :goal do |g|
-  g.description Factory.next :description
+  g.description { Factory.next :description }
+  g.association :user, :factory => :user
 end
 
 Factory.define :child_goal, :parent => :goal do |g|

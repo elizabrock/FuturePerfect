@@ -1,9 +1,9 @@
 - form_for(@goal) do |f|
   = f.error_messages
-  
+  = f.hidden_field :user_id
   %ul.pageitem
     %li.bigfield
-      = f.text_field :description, :placeholder=>"Description"
+      = f.text_field :description, :placeholder => "Description"
     %li.button
       = f.submit
   / .field
