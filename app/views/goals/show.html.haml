@@ -1,7 +1,10 @@
 -content_for :header, @goal.description
 
--content_for :breadcrumb, link_to(@goal.parent_goal, :show => @goal.parent_goal)
+-content_for :left_of_header, breadcrumbs_from(@goal).html_safe
 
+- content_for :right_of_header do
+  =link_to "+", new_goal_child_path(@goal)
+  
 %ul.pageitem
   %li.store
     %span.image

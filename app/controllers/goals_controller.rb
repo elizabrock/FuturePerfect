@@ -1,10 +1,10 @@
 class GoalsController < ApplicationController
   before_filter :authenticate_user!
-  
+
   # GET /goals
   # GET /goals.xml
   def index
-    @goals = Goal.all
+    @goals = current_user.goals.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,16 +15,11 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.xml
   def show
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
 
     respond_to do |format|
-      if @goal.user == current_user then
-        format.html # show.html.erb
-        format.xml  { render :xml => @goal }
-      else
-        format.html { redirect_to goals_path }
-        format.xml { redirect_to goals_path }
-      end
+      format.html # show.html.erb
+      format.xml  { render :xml => @goal }
     end
   end
 
@@ -32,6 +27,8 @@ class GoalsController < ApplicationController
   # GET /goals/new.xml
   def new
     @goal = Goal.new
+    parent_goal = current_user.goals.find(params[:id]) if params[:id]
+    @goal.parent_goal = parent_goal
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,19 +38,22 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
-    @goal = Goal.find(params[:id])
-    
-    if @goal.user != current_user
-      redirect_to goals_path
-    end
+    @goal = current_user.goals.find(params[:id])
   end
 
   # POST /goals
   # POST /goals.xml
   def create
-    @goal = Goal.new(params[:goal])
+    parent_goal = current_user.goals.find(params[:goal][:parent_goal_id]) if params[:goal][:parent_goal_id]
+
+    @goal = if parent_goal then
+      parent_goal.child_goals.build(params[:goal])
+    else
+      Goal.new(params[:goal])
+    end
+
     @goal.user = current_user
-    
+
     respond_to do |format|
       if @goal.save
         format.html { redirect_to(@goal, :notice => 'Goal was successfully created.') }
@@ -68,13 +68,10 @@ class GoalsController < ApplicationController
   # PUT /goals/1
   # PUT /goals/1.xml
   def update
-    @goal = Goal.find(params[:id])
+    @goal = current_user.goals.find(params[:id])
 
     respond_to do |format|
-      if @goal.user != current_user 
-        format.html { redirect_to goals_path }
-        format.xml  { head :status => :unprocessable_entity }
-      elsif @goal.update_attributes(params[:goal])
+      if @goal.update_attributes(params[:goal])
         format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -87,9 +84,7 @@ class GoalsController < ApplicationController
   # DELETE /goals/1
   # DELETE /goals/1.xml
   def destroy
-    @goal = Goal.find(params[:id])
-    @goal.destroy if(@goal.user == current_user)
-    
+    @goal = current_user.goals.find(params[:id])
 
     respond_to do |format|
       format.html { redirect_to(goals_url) }

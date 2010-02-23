@@ -18,14 +18,14 @@
         = (content_for? :header)? yield(:header) : "FuturePerfect"
       #leftnav
         = link_to_unless_current(image_tag("iWebKit/home.png", :alt => "Home"), goals_path) {""}
-        = #link_to "P1 Goal", :action => "index"
-        = #link_to "P2 Goal", :action => "index"
-      #rightbutton
-        =link_to_unless(!current_page?(:controller => "/goals"), "+", new_goal_path){""}
+        = yield(:left_of_header) if content_for? :left_of_header
+      #rightbutton  
+        = yield(:right_of_header) if content_for? :right_of_header
     #content
-      %ul.pageitem
-        %li.textbox
-          %p.notice= notice
+      -if notice
+        %ul.pageitem
+          %li.textbox
+            %p.notice= notice
       =yield
       
     #footer

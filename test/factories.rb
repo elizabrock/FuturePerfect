@@ -21,4 +21,5 @@ end
 
 Factory.define :child_goal, :parent => :goal do |g|
   g.association :parent_goal, :factory => :goal
+  #TODO: get the user from the parent_goal
 end

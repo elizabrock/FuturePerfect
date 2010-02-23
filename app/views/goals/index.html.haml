@@ -1,5 +1,7 @@
 - content_for :body_class, ''
-
+- content_for :right_of_header do
+  =link_to "+", new_goal_path
+  
 %span.graytitle
   Goals
 %ul.pageitem

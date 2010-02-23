@@ -1,6 +1,6 @@
 - form_for(@goal) do |f|
-  = f.error_messages
-  = f.hidden_field :user_id
+  = iphone_error_messages_for f
+  = f.hidden_field :parent_goal_id
   %ul.pageitem
     %li.bigfield
       = f.text_field :description, :placeholder => "Description"

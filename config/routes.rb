@@ -1,7 +1,11 @@
 FuturePerfect::Application.routes.draw do |map|
   devise_for :users
   
-  resources :goals
+  resources :goals do
+    member do
+      get :new, :as => 'child'
+    end
+  end
   
   root :to => "goals#index"
 

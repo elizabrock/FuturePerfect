@@ -7,4 +7,9 @@ module ApplicationHelper
       content_tag(:ul, contents, :class => 'pageitem')
     end
   end
+  
+  def breadcrumbs_from( goal, options = {} )
+    return "" if goal == nil
+    breadcrumbs_from(goal.parent_goal, :show_base => true ) + (options[:show_base]? link_to(goal.description, goal_path(goal)) : "")
+  end
 end
