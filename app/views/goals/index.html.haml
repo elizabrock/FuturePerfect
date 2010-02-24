@@ -5,18 +5,8 @@
 %span.graytitle
   Goals
 %ul.pageitem
-  - for goal in @goals
-    %li.store
-      -link_to goal do
-        %span.image
-        %span.comment
-          comment
-        %span.name
-          = goal.description
-        %span.stars4
-        %span.starcomment
-          98% done
-        %span.arrow
+  = render :partial => @goals
+
 %span.graytitle
   You can finish these right now!
 %ul.pageitem

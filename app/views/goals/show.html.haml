@@ -3,28 +3,31 @@
 -content_for :left_of_header, breadcrumbs_from(@goal).html_safe
 
 - content_for :right_of_header do
+  /=link_to 'Edit', edit_goal_path(@goal)
   =link_to "+", new_goal_child_path(@goal)
-  
 %ul.pageitem
   %li.store
-    %span.image
-    %span.comment
-      comment
-    %span.name
-      = @goal.description
-    %span.stars4
-    %span.starcomment
-      98% done
+    -link_to edit_goal_path(@goal) do
+      %span.name
+        = @goal.description
+      %span.image
+        /=image_tag "iWebKit/thumbs/other.png", :alt => "temporary thumbnail"
+      %span.comment
+        comment
+        =@goal.completed_at
+      %span.name
+        = @goal.description
+      %span.stars4
+      %span.starcomment
+        98% done
+      %span.arrow
   
-=@goal.completed_at
 
-%br
-%span.graytitle
-  Progress
-  
-%br
 
-Child goals here...
+-unless @goal.child_goals.empty?
+  %span.graytitle
+    Progress
+  %br
+  %ul.pageitem
+    = render :partial => @goal.child_goals
 
-%br
-== #{ link_to 'Edit', edit_goal_path(@goal) }

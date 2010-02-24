@@ -1,0 +1,7 @@
+%li.menu
+  -link_to goal do
+    =image_tag "iWebKit/thumbs/other.png", :alt => "temporary thumbnail"
+    %span.name
+      = goal.description
+    -if goal.has_child_goals?
+      %span.arrow 

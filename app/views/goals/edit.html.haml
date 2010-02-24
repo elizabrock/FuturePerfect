@@ -1,7 +1,5 @@
--content_for :header, @goal.description
+-content_for :header, "Editting goal: " + @goal.description
 
 -content_for :left_of_header, breadcrumbs_from(@goal, :show_base => true).html_safe
-
-%h1 Editing goal
 
 = render 'form'
