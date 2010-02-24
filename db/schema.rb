@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100221233115) do
+ActiveRecord::Schema.define(:version => 20100223235710) do
+
+  create_table "four_oh_fours", :force => true do |t|
+    t.string   "host"
+    t.string   "path"
+    t.string   "referrer"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "goals", :force => true do |t|
     t.string   "description"

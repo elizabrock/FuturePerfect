@@ -1,9 +1,7 @@
 -content_for :header, @goal.description
 
--content_for :left_of_header, breadcrumbs_from(@goal).html_safe
+-content_for :left_of_header, breadcrumbs_from(@goal, :show_base => true).html_safe
 
 %h1 Editing goal
 
 = render 'form'
-
-== #{ link_to 'Show', @goal } | #{ link_to 'Back', goals_path }

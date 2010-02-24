@@ -85,6 +85,7 @@ class GoalsController < ApplicationController
   # DELETE /goals/1.xml
   def destroy
     @goal = current_user.goals.find(params[:id])
+    @goal.andand.destroy
 
     respond_to do |format|
       format.html { redirect_to(goals_url) }

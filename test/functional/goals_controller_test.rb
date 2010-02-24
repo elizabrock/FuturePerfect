@@ -144,8 +144,8 @@ class GoalsControllerTest < ActionController::TestCase
     @goal = Factory.create(:goal, :user => @user)
     assert_difference('Goal.count', -1) do
       delete :destroy, :id => @goal.to_param
+      assert_redirected_to goals_path
     end
-    assert_redirected_to goals_path
   end
 
   test "should not destroy other's goal" do
