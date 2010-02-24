@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.xml
   def index
-    @goals = current_user.goals.all
+    @goals = current_user.goals.root_goals
 
     respond_to do |format|
       format.html # index.html.erb

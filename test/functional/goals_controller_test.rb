@@ -6,6 +6,8 @@ class GoalsControllerTest < ActionController::TestCase
     @user = Factory.create :user
     @other_user = Factory.create :user
     sign_in @user
+    create_tree_of_goals_for_user @user
+    @user.reload
   end
 
   test "a signed out user can't get index" do
@@ -14,10 +16,11 @@ class GoalsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path(:unauthenticated =>'true')
   end
 
-  test "should get index" do
+  test "should get index with list of root goals" do
     get :index
     assert_response :success
     assert_not_nil assigns(:goals)
+    assert_equal 5, assigns(:goals).size
   end
 
   test "should get new" do

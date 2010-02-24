@@ -26,6 +26,29 @@ class GoalTest < ActiveSupport::TestCase
     end
   end
   
+  test "should return top level goals for the root_goals named scope" do
+    user = Factory.create :user
+    roots = []
+    leaves = []
+    5.times do
+      root = Factory.create :goal, :user => user
+      roots << root
+      5.times do
+        child = Factory.create :child_goal, :parent_goal => root, :user => user
+        2.times do
+          leaf = Factory.create :child_goal, :parent_goal => child, :user => user
+          leaves << leaf
+        end
+      end
+    end
+    user.reload
+    roots_result = user.goals.root_goals
+    #leafs_result = @user.goals.leaf_goals
+    assert_equal 5, roots_result.size
+    assert_equal [], roots_result - roots
+    assert_equal [], roots - roots_result
+  end
+  
   # test "should not be able to update user" do
   #   user1 = Factory.create :user
   #   user2 = Factory.create :user
