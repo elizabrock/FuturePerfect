@@ -20,6 +20,7 @@ gem 'jquery-rails'
 group :test do
   gem 'database_cleaner'
   gem 'fakeweb'
+  gem 'launchy'
   gem 'shoulda'
   gem 'vcr'
   # Pretty printed test output

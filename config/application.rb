@@ -48,6 +48,9 @@ module FuturePerfect
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # At the suggestion of the devise:install rake task:
+    config.assets.initialize_on_precompile = false
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
