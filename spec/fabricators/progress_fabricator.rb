@@ -1,0 +1,2 @@
+Fabricator(:progress) do
+end

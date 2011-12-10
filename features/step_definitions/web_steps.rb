@@ -5,6 +5,8 @@ def path_to(page_name)
     '/'
   when /^the sign\s?in page$/
     new_user_session_path
+  when /^the goal page for "([^"]*)"$/
+    goal_path(Goal.find_by_title $1)
   else
     raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
       "Now, go and add a mapping in #{__FILE__}"
@@ -70,4 +72,16 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+Then /^(?:|I )should see the following list:$/ do |table|
+  table.raw.each_with_index do |content, row|
+    page.should have_xpath("//ul/li[#{row+1}][contains(normalize-space(.), '#{content[0]}')]")
+  end
+end
+
+Then /^(?:|I )should see the following:$/ do |table|
+  table.raw.each_with_index do |content, row|
+    page.should have_content(content[0])
+  end
 end
