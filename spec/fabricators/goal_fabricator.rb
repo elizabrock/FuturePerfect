@@ -1,0 +1,2 @@
+Fabricator(:goal) do
+end

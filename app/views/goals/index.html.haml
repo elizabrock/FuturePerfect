@@ -1,0 +1,4 @@
+%ul
+  - goals.each do |goal|
+    %li= link_to goal.title, goal
+=link_to 'New Goal', new_goal_path

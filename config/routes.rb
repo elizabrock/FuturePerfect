@@ -1,4 +1,6 @@
 FuturePerfect::Application.routes.draw do
-  root to: "sessions#new"
+  resources :goals, except: [:destroy]
+
   devise_for :users
+  root to: 'goals#index'
 end

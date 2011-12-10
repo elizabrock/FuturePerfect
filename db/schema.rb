@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209215313) do
+ActiveRecord::Schema.define(:version => 20111209223245) do
 
   create_table "goals", :force => true do |t|
-    t.string   "description"
-    t.datetime "completed_at"
-    t.integer  "parent_goal_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "success_means"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
