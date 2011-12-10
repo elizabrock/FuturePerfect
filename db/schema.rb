@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111210012440) do
+ActiveRecord::Schema.define(:version => 20111210164816) do
 
   create_table "goals", :force => true do |t|
     t.integer  "user_id"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20111210012440) do
 
   create_table "progresses", :force => true do |t|
     t.integer  "goal_id"
-    t.string   "task_accomplished"
-    t.string   "next_step"
+    t.text     "task_accomplished"
+    t.text     "next_step"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

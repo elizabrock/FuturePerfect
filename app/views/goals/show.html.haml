@@ -1,22 +1,22 @@
-%h1= goal.title
-= link_to 'Edit Goal', edit_goal_path(goal)
+%h2
+  #{goal.title}
+  %span.aside= link_to 'Edit', edit_goal_path(goal)
 %p
-  %em Success Means:
+  You've succeeded if:
   = goal.success_means
-
 - unless goal.progresses.empty?
   %p
     %b Next Step:
     = goal.last_progress.next_step
+%hr
 
-  %p
-    The last time you made progress was #{time_ago_in_words(goal.last_progress.created_at)} ago.
-
-%h3 Make Progress!
 = render "progresses/form", locals: {progress: progress}
 
 - unless goal.progresses.empty?
+  %p
+    The last time you made progress was #{last_progress_in_words(goal)}.
   %p Previously you:
   %ul.progresses
     - goal.progresses.each do |progress|
       %li= progress.task_accomplished
+= link_to '< back', goals_path

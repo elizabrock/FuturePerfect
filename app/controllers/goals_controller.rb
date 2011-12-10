@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   expose(:goals){ current_user.goals.all }
   expose(:goal)
-  expose(:progress){ goal.progresses.new }
+  expose(:progress){ Progress.new }
 
   def index
     respond_to do |format|

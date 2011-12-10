@@ -1,4 +1,10 @@
-%ul
+%h2
+  Goals:
+%ul.goals
   - goals.each do |goal|
-    %li= link_to goal.title, goal
-=link_to 'New Goal', new_goal_path
+    %li
+      = link_to goal do
+        %span.goal= goal.title
+        %span.aside= last_progress_in_words(goal)
+
+=link_to 'New Goal', new_goal_path, class: "nice medium white button"

@@ -1,8 +1,7 @@
 = semantic_form_for [goal, progress] do |f|
   = f.semantic_errors
-  = f.inputs do
+  = f.inputs "Make Progress!" do
     = f.input :task_accomplished, label: "Task Accomplished"
     = f.input :next_step, label: "Next Step"
-  = f.buttons do
     = f.commit_button "Record Progress"
 

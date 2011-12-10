@@ -1,0 +1,36 @@
+#zurBar {
+  background: #222222;
+  border-bottom: solid 4px #00a5ff;
+  padding: 15px 20px 13px 20px;
+  h1 {
+    margin-bottom: 0;
+    line-height: 1;
+    color: white;
+    font-size: 36px;
+    font-size: 3.6rem;
+    font-weight: 500;
+    a { color: #fff; }
+  }
+}
+
+body {
+  font-family: museo-slab, "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 24px;
+}
+
+form {
+  ol {
+    list-style-type: none;
+  }
+}
+
+#content {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.aside {
+  font-size: 50%;
+  color: #222;
+}
+
