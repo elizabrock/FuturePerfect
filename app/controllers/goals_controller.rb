@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  expose(:goals){ current_user.goals.all }
+  expose(:goals){ current_user.goals.all.sort_by{|g| g.last_progress.andand.created_at || Time.at(0) } }
   expose(:goal)
   expose(:progress){ Progress.new }
 
